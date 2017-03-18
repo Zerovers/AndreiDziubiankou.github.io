@@ -16,8 +16,8 @@ function divide(a, b){
 
 function absoluteDivide(a, b){
   var c = Math.floor(a/b);
-  if (c < 0 && ((a%b) < 0)) {
-    c++;
+  if (c < 0) {
+    c = Math.ceil(a/b);
   }
   return c;
 }
