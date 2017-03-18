@@ -15,11 +15,12 @@ function divide(a, b){
 }
 
 function absoluteDivide(a, b){
-  var c = Math.floor(a/b);
+  var c = a / b;
   if (c < 0) {
-    c = Math.ceil(a/b);
+    return Math.ceil(c);
+  } else {
+    return Math.floor(c);
   }
-  return c;
 }
 
 console.log("plus without arguments = " + plus())
