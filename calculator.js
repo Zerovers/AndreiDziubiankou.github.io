@@ -15,7 +15,11 @@ function divide(a, b){
 }
 
 function absoluteDivide(a, b){
-  return (a / b)^0;
+  var c = Math.floor(a/b);
+  if (c < 0 && ((a%b) < 0)) {
+    c++;
+  }
+  return c;
 }
 
 console.log("plus without arguments = " + plus())
@@ -29,5 +33,11 @@ console.log("boolean(true) * 6 = " + multiply(true, 6))
 console.log("boolean(true) * string = " + multiply(true, "string"))
 console.log("18 / 4 = " + divide(18, 4))
 console.log("\"32\" / 8 = " + divide("32", 8))
-console.log("23 div 6 = " + absoluteDivide(23, 6))
-console.log("-29 div 5 = " + absoluteDivide(-29, 5))
+console.log("24 div 5 = " + absoluteDivide(24, 5))
+console.log("25 div 5 = " + absoluteDivide(25, 5))
+console.log("26 div 5 = " + absoluteDivide(26, 5))
+console.log("-24 div 5 = " + absoluteDivide(-24, 5))
+console.log("-25 div 5 = " + absoluteDivide(-25, 5))
+console.log("-26 div 5 = " + absoluteDivide(-26, 5))
+console.log("-24 div -5 = " + absoluteDivide(-24, -5))
+console.log("-26 div 5 = " + absoluteDivide(-26, -5))
