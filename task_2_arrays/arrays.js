@@ -34,32 +34,32 @@ function isArray(object){
 
 function range(rangeA, rangeB, step){
   var array = [];
+  var currentValue;
+  var iterations;
+  if (step === undefined) {
+    step = 1;
+  }
+  if (rangeB === undefined) {
+    currentValue = 0;
+  } else {
+    currentValue = rangeA
+  }
   switch(arguments.length){
     case 1:
-      for (var i = 0; i < rangeA; i++){
-        array[i] = i;
-      }
-      return array;
+      iterations = rangeA;
+      break;
     case 2:
-      var iterations = rangeB - rangeA;
-      var currentValue = rangeA;
-      for (i = 0; i < iterations; i++){
-        array[i] = currentValue;
-        currentValue++;
-      }
-      return array;
+      iterations = rangeB - rangeA;
+      break;
     case 3:
       iterations = Math.floor((rangeB - rangeA)/step) + 1;
-      currentValue = rangeA;
-      for (i = 0; i < iterations; i++){
-        array[i] = currentValue;
-        currentValue += step;
-      }
-      return array;
-    default:
-    return 'wrong number of arguments';
+      break;
   }
-  
+  for (var i = 0; i < iterations; i++){
+    array[i] = currentValue;
+    currentValue += step;
+  }
+  return array;
 }
 
 function sum(array){
@@ -71,11 +71,16 @@ function sum(array){
   return sum;*/
   
   //version 2
-  var sum = 0;
+  /*var sum = 0;
   array.forEach(function(item){
     sum += item;
   })
-  return sum;
+  return sum;*/
+  
+  //version 3 with reduce
+  return array.reduce(function(previous, current){
+    return previous + current;
+  })
 }
 
 function last(array){
@@ -83,16 +88,10 @@ function last(array){
 }
 
 function  excludeLast(array, number){
-  var arrayAfter;
-  switch(arguments.length){
-    case 1:
-      arrayAfter = array.slice(0, -1);
-      break;
-    case 2:
-      arrayAfter = array.slice(0, -number)
-      break;
+  if (number === undefined){
+    number = 1;
   }
-  return arrayAfter;
+  return array.slice(0, -number);
 }
 
 function compact(array){
@@ -106,21 +105,30 @@ function compact(array){
   return compactArray;*/
   
   //version 2
-  var compactArray = [];
+  /*var compactArray = [];
   array.forEach(function(item){
     if (Boolean(item)){
       compactArray.push(item);
     }
   })
-  return compactArray;
+  return compactArray;*/
+  
+  //version 3 with filter
+  return array.filter(function(item){
+    return Boolean(item);
+  });
 }
 
 function unique(array){
-  var uniqueArray = [];
+  //version 1
+  /*var uniqueArray = [];
   array.forEach(function(item){
     if (!uniqueArray.includes(item)){
       uniqueArray.push(item);
     }
   });
-  return uniqueArray;
+  return uniqueArray;*/
+  
+  //version 2 with Set
+  return [...new Set(array)];
 }
