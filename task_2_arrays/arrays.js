@@ -11,7 +11,13 @@ console.log('range(1, 5): ' + range(1, 5));
 console.log('range(1, 10, 2): ' + range(1, 10, 2));
 console.log('range(1, 10, 5, 40): ' + range(1, 10, 5, 40));
 
-var array = [1, 4, 6, 8, 9, 15, 32];
+var array = [1, 4, 6, 8, 9, false, 15, 32, '', 0, "string", "false"];
+console.log('compact([' + array + ']): ' + compact(array));
+
+array = [0, 1, 4, 4, 'string', 'string' , false, false, [1], [1], {}, {}];
+console.log('unique([' + array + ']): '+ unique(array))
+
+array = [1, 4, 6, 8, 9, 15, 32];
 console.log('sum([' + array +']): ' + sum(array));
 console.log('last([' + array +']): ' + last(array));
 console.log('excludeLast([' + array +']): ' + excludeLast(array));
@@ -89,4 +95,32 @@ function  excludeLast(array, number){
   return arrayAfter;
 }
 
+function compact(array){
+  //version 1
+  /*var compactArray = [];
+  for (var i = 0; i < array.length; i++){
+    if (Boolean(array[i])){
+      compactArray.push(array[i]);
+    }
+  }
+  return compactArray;*/
+  
+  //version 2
+  var compactArray = [];
+  array.forEach(function(item){
+    if (Boolean(item)){
+      compactArray.push(item);
+    }
+  })
+  return compactArray;
+}
 
+function unique(array){
+  var uniqueArray = [];
+  array.forEach(function(item){
+    if (!uniqueArray.includes(item)){
+      uniqueArray.push(item);
+    }
+  });
+  return uniqueArray;
+}
