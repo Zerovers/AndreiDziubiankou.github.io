@@ -34,26 +34,15 @@ function isArray(object){
 
 function range(rangeA, rangeB, step){
   var array = [];
-  var currentValue;
-  var iterations;
+  var currentValue = rangeA;
+  var iterations = Math.floor((rangeB - rangeA)/step) + 1;;
   if (step === undefined) {
     step = 1;
+    iterations = rangeB - rangeA;
   }
   if (rangeB === undefined) {
     currentValue = 0;
-  } else {
-    currentValue = rangeA
-  }
-  switch(arguments.length){
-    case 1:
-      iterations = rangeA;
-      break;
-    case 2:
-      iterations = rangeB - rangeA;
-      break;
-    case 3:
-      iterations = Math.floor((rangeB - rangeA)/step) + 1;
-      break;
+    iterations = rangeA;
   }
   for (var i = 0; i < iterations; i++){
     array[i] = currentValue;
@@ -115,7 +104,7 @@ function compact(array){
   
   //version 3 with filter
   return array.filter(function(item){
-    return Boolean(item);
+    return item;
   });
 }
 
@@ -130,5 +119,10 @@ function unique(array){
   return uniqueArray;*/
   
   //version 2 with Set
-  return [...new Set(array)];
+  //return [...new Set(array)];
+  
+  //version 3 with filter for ES5
+   return array.filter(function(item, position,arr) {
+    return arr.indexOf(item) == position;
+  });
 }
