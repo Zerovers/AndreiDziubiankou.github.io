@@ -1,4 +1,4 @@
-"use strict"
+
 console.log('isArray({}): ' + isArray({}));
 console.log('isArray({}): ' + isArray(24));
 console.log('isArray("hello world"): ' + isArray('hello world'));
@@ -6,10 +6,20 @@ console.log('isArray(true) ' + isArray(true));
 console.log('isArray([]) ' + isArray([]));
 
 console.log('range(): ' + range());
-console.log('range(5): ' + range(5));
-console.log('range(1, 5): ' + range(1, 5));
-console.log('range(1, 10, 2): ' + range(1, 10, 2));
-console.log('range(1, 10, 5, 40): ' + range(1, 10, 5, 40));
+console.log('range(10): ' + range(10)); 
+console.log('range(1, 10): ' + range(1, 10));
+console.log('range(1, 10, 3): ' + range(1, 10, 3));
+console.log('range(10, null, 3): ' + range(10, null, 3));
+console.log('range(10, null): ' + range(10, null));
+console.log('range(-2, -5): ' + range(-2, -5));
+console.log('range(-5, -2): ' + range(-5, -2));
+console.log('range(-5, -2, 2): ' + range(-5, -2, 2));
+console.log('range(-5, 0, 2): ' + range(-5, 0, 2));
+console.log('range(-5, -2, -2): ' + range(-5, -2, -2)); 
+console.log('range(-5, null, 2): ' + range(-5, null, 2)); 
+console.log('range(-5, null, -2): ' + range(-5, null, -2))
+console.log('range(-10, -20, -5): ' + range(-10, -20, -5))
+console.log('range(-20, -10, -5): ' + range(-20, -10, -5))
 
 var array = [1, 4, 6, 8, 9, false, 15, 32, '', 0, "string", "false"];
 console.log('compact([' + array + ']): ' + compact(array));
@@ -34,17 +44,15 @@ function isArray(object){
 
 function range(rangeA, rangeB, step){
   var array = [];
-  var currentValue = rangeA;
-  var iterations = Math.floor((rangeB - rangeA)/step) + 1;;
-  if (step === undefined) {
-    step = 1;
-    iterations = rangeB - rangeA;
+  var isTrueRangeB = typeof rangeB == "number";
+  var currentValue = isTrueRangeB ? rangeA : 0;
+  var totalRange = isTrueRangeB ? rangeB - rangeA : rangeA;
+  step = step || (isTrueRangeB ? 1 : totalRange > 0 ? 1 : -1);
+  var length = parseInt(totalRange/step);
+  if ((totalRange % step) != 0){
+    length++;
   }
-  if (rangeB === undefined) {
-    currentValue = 0;
-    iterations = rangeA;
-  }
-  for (var i = 0; i < iterations; i++){
+  for (var i = 0; i < length; i++){
     array[i] = currentValue;
     currentValue += step;
   }
@@ -87,7 +95,7 @@ function compact(array){
   //version 1
   /*var compactArray = [];
   for (var i = 0; i < array.length; i++){
-    if (Boolean(array[i])){
+    if (array[i]){
       compactArray.push(array[i]);
     }
   }
@@ -96,7 +104,7 @@ function compact(array){
   //version 2
   /*var compactArray = [];
   array.forEach(function(item){
-    if (Boolean(item)){
+    if (item){
       compactArray.push(item);
     }
   })
@@ -109,19 +117,6 @@ function compact(array){
 }
 
 function unique(array){
-  //version 1
-  /*var uniqueArray = [];
-  array.forEach(function(item){
-    if (!uniqueArray.includes(item)){
-      uniqueArray.push(item);
-    }
-  });
-  return uniqueArray;*/
-  
-  //version 2 with Set
-  //return [...new Set(array)];
-  
-  //version 3 with filter for ES5
    return array.filter(function(item, position,arr) {
     return arr.indexOf(item) == position;
   });
