@@ -1,3 +1,4 @@
+"use strict"
 var array = [-25, -15, -12, -3, 0, 1, 4, 6, 19, 32, 56];
 
 console.log('with recursion');

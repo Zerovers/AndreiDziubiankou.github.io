@@ -1,4 +1,4 @@
-
+"use strict"
 console.log('isArray({}): ' + isArray({}));
 console.log('isArray({}): ' + isArray(24));
 console.log('isArray("hello world"): ' + isArray('hello world'));
@@ -44,12 +44,12 @@ function isArray(object){
 
 function range(rangeA, rangeB, step){
   var array = [];
-  var isTrueRangeB = typeof rangeB == "number";
+  var isTrueRangeB = rangeB !== null && rangeB !== undefined;
   var currentValue = isTrueRangeB ? rangeA : 0;
   var totalRange = isTrueRangeB ? rangeB - rangeA : rangeA;
   step = step || (isTrueRangeB ? 1 : totalRange > 0 ? 1 : -1);
-  var length = parseInt(totalRange/step);
-  if ((totalRange % step) != 0){
+  var length = parseInt(totalRange / step);
+  if (totalRange % step){
     length++;
   }
   for (var i = 0; i < length; i++){
