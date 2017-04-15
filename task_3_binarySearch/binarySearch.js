@@ -19,37 +19,37 @@ console.log('binarySearch([' + array + '], -19): ' + binarySearchWhile(array, -1
 console.log('binarySearch([' + array + '], 12): ' + binarySearchWhile(array, 12));
 console.log('binarySearch([' + array + '], 19): ' + binarySearchWhile(array, 19));
 console.log('binarySearch([], 0): ' + binarySearch([], 0));
-;
-function binarySearch(array, key, start, end){
-   if (end < start){
-    return -1
+
+function binarySearch(array, key, start, end) {
+  if (end < start) {
+    return -1;
   }
   var low = start || 0;
-  var high = end || array.length - 1;
+  var high = end == undefined ? array.length - 1 : end;
   var mid = parseInt((low + high) / 2);
   var midValue = array[mid];
   if (key == midValue) {
-        return mid;
-    } else if (key < midValue){
-        return binarySearch(array, key, low, mid - 1);
-    } else {
-        return binarySearch(array, key, mid + 1, high);
-    }
+    return mid;
+  } else if (key < midValue) {
+    return binarySearch(array, key, low, mid - 1);
+  } else {
+    return binarySearch(array, key, mid + 1, high);
+  }
 }
 
-function binarySearchWhile(array, key){
+function binarySearchWhile(array, key) {
   var low = 0;
   var high = array.length - 1;
-  while (low <= high){
+  while (low <= high) {
     var mid = parseInt((low + high) / 2);
     var midValue = array[mid];
-
-    if (midValue < key)
-        low = mid + 1;
-    else if (midValue > key)
-        high = mid - 1;
-    else
-        return mid;
+    if (midValue < key) {
+      low = mid + 1;
+    } else if (midValue > key) {
+      high = mid - 1;
+    } else {
+      return mid;
+    }
   }
   return -1;
 }
