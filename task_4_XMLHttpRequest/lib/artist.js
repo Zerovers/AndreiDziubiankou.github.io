@@ -2,17 +2,16 @@
 
 function ArtistRequest() {};
 
-ArtistRequest.prototype = Request.prototype;
+ArtistRequest.prototype = Object.create(Request.prototype);
 
 ArtistRequest.prototype.search = function(name) {
-  return this.load('artist.search&artist=' + name + '&limit=10').results.artistmatches.artist;
+  this.load('artist.search&artist=' + name);
 };
 
 ArtistRequest.prototype.getInfo = function(name) {
-  var result = this.load('artist.getinfo&artist=' + name).artist;
-  return result.url + '\n' + result.bio.summary;
+  this.load('artist.getinfo&artist=' + name);
 };
 
 ArtistRequest.prototype.getTopAlbums = function(name) {
-  return this.load('artist.gettopalbums&artist=' + name + '&limit=10').topalbums.album;
+  this.load('artist.gettopalbums&artist=' + name);
 };
