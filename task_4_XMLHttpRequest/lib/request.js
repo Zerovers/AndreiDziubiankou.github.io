@@ -5,7 +5,7 @@ function Request() {};
 Request.prototype.load = function(params) {
   var paramsInString = '';
   for (var key in params){
-    paramsInString += key + '=' + params[key] +'&';
+    paramsInString += encodeURIComponent(key) + '=' + encodeURIComponent(params[key]) +'&';
   }
   var urlPrefix = 'http://ws.audioscrobbler.com/2.0/?';
   var api_key_json = 'api_key=2d8e897e2945bd2b4f1d70369c7449e2&format=json';
