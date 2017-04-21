@@ -5,5 +5,7 @@ function ChartRequest() {};
 ChartRequest.prototype = Object.create(Request.prototype);
 
 ChartRequest.prototype.getTopArtists = function() {
-  this.load('chart.gettopartists');
+  this.load({
+    method: 'chart.gettopartists'
+  });
 };

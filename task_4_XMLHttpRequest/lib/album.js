@@ -5,5 +5,9 @@ function AlbumRequest() {};
 AlbumRequest.prototype = Object.create(Request.prototype);
 
 AlbumRequest.prototype.getAlbumInfo = function(artistName, albumName) {
-  this.load('album.getinfo&artist=' + artistName + '&album=' + albumName);
+  this.load({
+    method:'artist.gettopalbums',
+    artist: artistName,
+    album: albumName
+  });
 }
