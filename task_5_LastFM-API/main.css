@@ -88,7 +88,7 @@ body {
   text-align: center;
 }
 .container .logo img {
-  background: url(mezolit.jpg);
+  background: url(img/background.jpg);
   background-size: contain;
   width: 300px;
   height: 300px;
@@ -141,14 +141,14 @@ body {
   display: inline-block;
   height: 32px;
   width: 32px;
-  background: url(like.png);
+  background: url(img/like.png);
   margin: auto;
 }
 .dislike {
   display: inline-block;
   height: 32px;
   width: 32px;
-  background-image: url(dislike.png);
+  background-image: url(img/dislike.png);
   margin: auto;
 }
 
@@ -173,6 +173,8 @@ body {
   margin-bottom: 20px;
 }
 .description img {
+  background: url(img/background.jpg);
+  background-size: contain; 
   float: left;
   width: 300px;
   height: 300px;

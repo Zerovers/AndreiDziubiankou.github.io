@@ -2,7 +2,7 @@
 
 function Request() {};
 
-Request.prototype.load = function(params) {
+Request.prototype.load = function(params, processFunction) {
   var paramsInString = '';
   for (var key in params){
     paramsInString += encodeURIComponent(key) + '=' + encodeURIComponent(params[key]) +'&';
@@ -13,13 +13,15 @@ Request.prototype.load = function(params) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', urlPrefix + paramsInString + api_key_json, true);
   xhr.send();
-  /*xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = function() {
     if (xhr.readyState != 4) return;
     if (xhr.status == 200) {
-      console.log(JSON.parse(xhr.responseText));
+      var responseObject = JSON.parse(xhr.responseText);
+      console.log(responseObject);
+      processFunction(responseObject);
     } else {
       console.log('error: request status ' + xhr.status);
     }
-  }*/
+  }
   return xhr;
 };

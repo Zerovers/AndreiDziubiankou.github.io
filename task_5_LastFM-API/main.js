@@ -9,11 +9,3 @@ function indexRequest(){
 }
 
 indexRequest();
-/*var artistName = 'Stigmata';
-request.search(artistName);
-request.getInfo(artistName);
-request.getTopAlbums(artistName);
-
-var albumName = 'Acoustic&Drive';
-request = new AlbumRequest();
-request.getAlbumInfo(artistName, albumName);*/
