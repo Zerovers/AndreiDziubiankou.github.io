@@ -9,47 +9,36 @@ body {
   height: 100%;
   font-family: sans-serif;
 }
-
-#header {
+.blue-wrapper-centered {
+  background-color: blue;
+  width: 100%;
+  text-align: center;
+}
+.header-content {
+  display: inline-block;
+  width: 1200px;
+}
+header {
   font-size: 26px;
   height: 60px;
-  position: relative;
-  background-color: blue;
-  width: 100%;
 }
-#header a{
-  width: 1200px;
-  height: 26px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
+header .header-content {
+  text-align: left;
+  line-height: 60px;
+}
+header a {
   color: white;
 }
-
-#footer {
+footer {
+  position: absolute;
   font-size: 16px;
   height: 46px;
-  background-color: blue;
-  width: 100%;
-  position: absolute;
   bottom: 0;
 }
-#footer div{
-  height: 16px;
-  width: 1200px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  text-align: center;
+footer .header-content{
+  line-height: 46px;
   color: white;
 }
-
 #content {
   position: relative;
   margin: auto;
@@ -128,10 +117,9 @@ body {
 }
 
 .likes{
-  float: right;
   position: absolute;
   height: 32px;
-  width: 178px;
+  width: 160px;
   top: 0;
   bottom: 0;
   right: 0;
@@ -154,12 +142,12 @@ body {
 
 .name {
   font-size: 32px;
-  width: 600px;
-  float: left;
+  max-width: 600px;
   height: 32px;
   position: absolute;
   top: 0;
   bottom: 0;
+  left: 0;
   margin: auto;
   white-space: nowrap;
   overflow: hidden;
@@ -174,7 +162,7 @@ body {
 }
 .description img {
   background: url(img/background.jpg);
-  background-size: contain; 
+  background-size: contain;
   float: left;
   width: 300px;
   height: 300px;

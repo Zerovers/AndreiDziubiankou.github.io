@@ -1,3 +1,4 @@
+"use strict"
 function DivFactory(){
 
 }
@@ -38,6 +39,7 @@ DivFactory.createSearchbar = function(){
   searchbarForm.onsubmit = function() {
     var request = new ArtistRequest();
     request.search(this.elements[0].value);
+    inputText.value = '';
     return false;
   }
   searchbar.appendChild(searchbarForm);

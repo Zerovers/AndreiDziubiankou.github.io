@@ -1,5 +1,5 @@
 "use strict"
-var header = document.querySelector('#header a');
+var header = document.querySelector('header a');
 header.onclick = indexRequest;
 
 function indexRequest(){
