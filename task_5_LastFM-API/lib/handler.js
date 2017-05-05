@@ -18,7 +18,7 @@ Handler.processGetTopArtists = function (responseObject){
     var name = artist.name;
     var processFunction = function() {
       var request = new ArtistRequest();
-      request.getInfo(artist.name);
+      request.getInfo(artist.name, Handler.processGetArtistInfo);
       return false;
     }
     divArtists.appendChild(DivFactory.createContainer(imgsrc, name, processFunction));
@@ -31,7 +31,7 @@ Handler.processGetTopArtists = function (responseObject){
   fragment.appendChild(DivFactory.createPagination(currentPage, totalPages,
     function() {
       var request = new ChartRequest();
-      request.getTopArtists(this.textContent);
+      request.getTopArtists(this.textContent, Handler.processGetTopArtists);
       return false;
     }));
 
@@ -55,7 +55,7 @@ Handler.processSearch = function (responseObject) {
       var name = artist.name;
       var processFunction = function() {
         var request = new ArtistRequest();
-        request.getInfo(artist.name);
+        request.getInfo(artist.name, Handler.processGetArtistInfo);
         return false;
       }
       divArtists.appendChild(DivFactory.createContainer(imgsrc, name, processFunction));
@@ -71,7 +71,7 @@ Handler.processSearch = function (responseObject) {
     fragment.appendChild(DivFactory.createPagination(currentPage, totalPages,
       function() {
         var request = new ArtistRequest();
-        request.search(artistName, this.textContent);
+        request.search(artistName, this.textContent, Handler.processSearch);
         return false;
       }));
 
@@ -103,7 +103,7 @@ Handler.processGetArtistInfo = function (responseObject){
   content.innerHTML = '';
   content.appendChild(fragment);
   var albumsRequest = new ArtistRequest();
-  albumsRequest.getTopAlbums(name);
+  albumsRequest.getTopAlbums(name, null, Handler.processGetTopAlbums);
 }
 
 Handler.processGetTopAlbums = function (responseObject){
@@ -123,7 +123,7 @@ Handler.processGetTopAlbums = function (responseObject){
     var processFunction = function() {
       var request = new AlbumRequest();
       var name = album.artist.name;
-      request.getAlbumInfo(name, album.name);
+      request.getAlbumInfo(name, album.name, Handler.processGetAlbumInfo);
       return false;
     }
     albumsDiv.appendChild(DivFactory.createContainer(imgsrc, albumName, processFunction));

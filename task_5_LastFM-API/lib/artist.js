@@ -4,7 +4,7 @@ function ArtistRequest() {};
 
 ArtistRequest.prototype = Object.create(Request.prototype);
 
-ArtistRequest.prototype.search = function(artistName, page) {
+ArtistRequest.prototype.search = function(artistName, page, handler) {
   var params = {
     method:'artist.search',
     artist: artistName
@@ -12,17 +12,17 @@ ArtistRequest.prototype.search = function(artistName, page) {
   if (page) {
     params.page = page;
   }
-  this.load(params, Handler.processSearch);
+  this.load(params, handler);
 };
 
-ArtistRequest.prototype.getInfo = function(artistName) {
+ArtistRequest.prototype.getInfo = function(artistName, handler) {
   this.load({
     method:'artist.getinfo',
     artist: artistName
-  }, Handler.processGetArtistInfo);
+  }, handler);
 };
 
-ArtistRequest.prototype.getTopAlbums = function(artistName, page) {
+ArtistRequest.prototype.getTopAlbums = function(artistName, page, handler) {
   var params = {
     method:'artist.gettopalbums',
     artist: artistName
@@ -30,5 +30,5 @@ ArtistRequest.prototype.getTopAlbums = function(artistName, page) {
   if (page) {
     params.page = page;
   }
-  this.load(params, Handler.processGetTopAlbums);
+  this.load(params, handler);
 };

@@ -38,7 +38,7 @@ DivFactory.createSearchbar = function(){
   searchbarForm.appendChild(submit);
   searchbarForm.onsubmit = function() {
     var request = new ArtistRequest();
-    request.search(this.elements[0].value);
+    request.search(this.elements[0].value, null, Handler.processSearch);
     inputText.value = '';
     return false;
   }

@@ -4,7 +4,7 @@ header.onclick = indexRequest;
 
 function indexRequest(){
   var request = new ChartRequest();
-  request.getTopArtists();
+  request.getTopArtists(null, Handler.processGetTopArtists);
   return false;
 }
 
