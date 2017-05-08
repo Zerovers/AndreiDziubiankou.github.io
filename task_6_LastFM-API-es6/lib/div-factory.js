@@ -64,7 +64,9 @@ class DivFactory {
       } else {
         page = document.createElement('a');
         page.href = '#';
-        page.onclick = processFunction;
+        page.onclick = ()=> {
+          processFunction(page);
+        };
       }
       page.textContent = i;
       page.className = 'page';

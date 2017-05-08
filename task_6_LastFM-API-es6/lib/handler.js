@@ -27,9 +27,9 @@ class Handler {
     let totalPages = parseInt(responseObject.artists['@attr'].totalPages);
 
     fragment.appendChild(DivFactory.createPagination(currentPage, totalPages,
-      function() {
+      (page) => {
         let request = new ChartRequest();
-        request.getTopArtists(this.textContent, Handler.processGetTopArtists);
+        request.getTopArtists(page.textContent, Handler.processGetTopArtists);
         return false;
       }));
 
@@ -61,15 +61,15 @@ class Handler {
 
     fragment.appendChild(divArtists);
 
-    let currentPage = parseInt(responseObject.results["opensearch:Query"].startPage);
-    let artistsPerPage = parseInt(responseObject.results["opensearch:itemsPerPage"])
-    let totalResults = parseInt(responseObject.results["opensearch:totalResults"]);
+    let currentPage = parseInt(responseObject.results['opensearch:Query'].startPage);
+    let artistsPerPage = parseInt(responseObject.results['opensearch:itemsPerPage'])
+    let totalResults = parseInt(responseObject.results['opensearch:totalResults']);
     let totalPages = parseInt(totalResults / artistsPerPage) + 1;
-    let artistName = responseObject.results["@attr"].for;
+    let artistName = responseObject.results['@attr'].for;
     fragment.appendChild(DivFactory.createPagination(currentPage, totalPages,
-      function() {
+      (page)=> {
         let request = new ArtistRequest();
-        request.search(artistName, this.textContent, Handler.processSearch);
+        request.search(artistName, page.textContent, Handler.processSearch);
         return false;
       }));
 
@@ -88,7 +88,7 @@ class Handler {
     let numberLikes = parseInt(Math.random() * 5);
     info.appendChild(DivFactory.createWrapper(name, numberLikes));
 
-    let imgsrc = responseObject.artist.image[2]["#text"];
+    let imgsrc = responseObject.artist.image[2]['#text'];
     let description = DivFactory.createDescription(imgsrc);
     let bio = document.createElement('div');
     bio.innerHTML = responseObject.artist.bio.content;
@@ -129,12 +129,12 @@ class Handler {
 
     let currentPage = parseInt(responseObject.topalbums['@attr'].page);
     let totalPages = parseInt(responseObject.topalbums['@attr'].totalPages);
-    let artistName = responseObject.topalbums["@attr"].artist;
+    let artistName = responseObject.topalbums['@attr'].artist;
 
     albumsDiv.appendChild(DivFactory.createPagination(currentPage, totalPages,
-      function() {
+      (page) => {
         let request = new ArtistRequest();
-        request.getTopAlbums(artistName, this.textContent, Handler.processGetTopAlbums);
+        request.getTopAlbums(artistName, page.textContent, Handler.processGetTopAlbums);
         return false;
       }));
 
@@ -155,7 +155,7 @@ class Handler {
 
     info.appendChild(DivFactory.createWrapper(albumName, numberLikes));
 
-    let imgsrc = responseObject.album.image[2]["#text"];
+    let imgsrc = responseObject.album.image[2]['#text'];
     let description = DivFactory.createDescription(imgsrc);
 
     let artistDiv = document.createElement('div');

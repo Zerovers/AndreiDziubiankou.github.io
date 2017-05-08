@@ -18,9 +18,8 @@ var Request = function () {
     value: function load(params, processFunction) {
       var paramsInString = '';
       for (var key in params) {
-        paramsInString += encodeURIComponent(key) + '=' + encodeURIComponent(params[key]) + '&';
+        paramsInString = '' + paramsInString + encodeURIComponent(key) + '=' + encodeURIComponent(params[key]) + '&';
       }
-      console.log(paramsInString);
       var urlPrefix = 'http://ws.audioscrobbler.com/2.0/?';
       var api_key_json = 'api_key=2d8e897e2945bd2b4f1d70369c7449e2&format=json';
       fetch(urlPrefix + paramsInString + api_key_json).then(function (response) {
@@ -217,18 +216,25 @@ var DivFactory = function () {
       }
       var pagination = document.createElement('div');
       pagination.className = 'pagination';
-      for (var i = firstPage; i <= lastPage; i++) {
+
+      var _loop = function _loop(i) {
         var page = null;
         if (i == currentPage) {
           page = document.createElement('span');
         } else {
           page = document.createElement('a');
           page.href = '#';
-          page.onclick = processFunction;
+          page.onclick = function () {
+            processFunction(page);
+          };
         }
         page.textContent = i;
         page.className = 'page';
         pagination.appendChild(page);
+      };
+
+      for (var i = firstPage; i <= lastPage; i++) {
+        _loop(i);
       }
       return pagination;
     }
@@ -308,9 +314,9 @@ var Handler = function () {
       var currentPage = parseInt(responseObject.artists['@attr'].page);
       var totalPages = parseInt(responseObject.artists['@attr'].totalPages);
 
-      fragment.appendChild(DivFactory.createPagination(currentPage, totalPages, function () {
+      fragment.appendChild(DivFactory.createPagination(currentPage, totalPages, function (page) {
         var request = new ChartRequest();
-        request.getTopArtists(this.textContent, Handler.processGetTopArtists);
+        request.getTopArtists(page.textContent, Handler.processGetTopArtists);
         return false;
       }));
 
@@ -343,14 +349,14 @@ var Handler = function () {
 
       fragment.appendChild(divArtists);
 
-      var currentPage = parseInt(responseObject.results["opensearch:Query"].startPage);
-      var artistsPerPage = parseInt(responseObject.results["opensearch:itemsPerPage"]);
-      var totalResults = parseInt(responseObject.results["opensearch:totalResults"]);
+      var currentPage = parseInt(responseObject.results['opensearch:Query'].startPage);
+      var artistsPerPage = parseInt(responseObject.results['opensearch:itemsPerPage']);
+      var totalResults = parseInt(responseObject.results['opensearch:totalResults']);
       var totalPages = parseInt(totalResults / artistsPerPage) + 1;
-      var artistName = responseObject.results["@attr"].for;
-      fragment.appendChild(DivFactory.createPagination(currentPage, totalPages, function () {
+      var artistName = responseObject.results['@attr'].for;
+      fragment.appendChild(DivFactory.createPagination(currentPage, totalPages, function (page) {
         var request = new ArtistRequest();
-        request.search(artistName, this.textContent, Handler.processSearch);
+        request.search(artistName, page.textContent, Handler.processSearch);
         return false;
       }));
 
@@ -370,7 +376,7 @@ var Handler = function () {
       var numberLikes = parseInt(Math.random() * 5);
       info.appendChild(DivFactory.createWrapper(name, numberLikes));
 
-      var imgsrc = responseObject.artist.image[2]["#text"];
+      var imgsrc = responseObject.artist.image[2]['#text'];
       var description = DivFactory.createDescription(imgsrc);
       var bio = document.createElement('div');
       bio.innerHTML = responseObject.artist.bio.content;
@@ -412,11 +418,11 @@ var Handler = function () {
 
       var currentPage = parseInt(responseObject.topalbums['@attr'].page);
       var totalPages = parseInt(responseObject.topalbums['@attr'].totalPages);
-      var artistName = responseObject.topalbums["@attr"].artist;
+      var artistName = responseObject.topalbums['@attr'].artist;
 
-      albumsDiv.appendChild(DivFactory.createPagination(currentPage, totalPages, function () {
+      albumsDiv.appendChild(DivFactory.createPagination(currentPage, totalPages, function (page) {
         var request = new ArtistRequest();
-        request.getTopAlbums(artistName, this.textContent, Handler.processGetTopAlbums);
+        request.getTopAlbums(artistName, page.textContent, Handler.processGetTopAlbums);
         return false;
       }));
 
@@ -438,7 +444,7 @@ var Handler = function () {
 
       info.appendChild(DivFactory.createWrapper(albumName, numberLikes));
 
-      var imgsrc = responseObject.album.image[2]["#text"];
+      var imgsrc = responseObject.album.image[2]['#text'];
       var description = DivFactory.createDescription(imgsrc);
 
       var artistDiv = document.createElement('div');
