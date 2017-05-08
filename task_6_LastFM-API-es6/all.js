@@ -25,10 +25,9 @@ var Request = function () {
       fetch(urlPrefix + paramsInString + api_key_json).then(function (response) {
         if (response.status == 200) {
           var responseObject = response.json();
-          console.log(responseObject);
           return responseObject;
         } else {
-          throw response;
+          return Promise.reject(response);
         }
       }).then(function (responseObject) {
         processFunction(responseObject);

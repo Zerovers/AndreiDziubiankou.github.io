@@ -11,12 +11,11 @@ class Request {
     let api_key_json = 'api_key=2d8e897e2945bd2b4f1d70369c7449e2&format=json';
     fetch(urlPrefix + paramsInString + api_key_json)
       .then(response => {
-        if (response.status == 200){
+        if (response.status == 200) {
           let responseObject = response.json();
-          console.log(responseObject);
           return responseObject;
         } else {
-          throw response;
+          return Promise.reject(response);
         }
       })
       .then(responseObject => {
