@@ -1,0 +1,88 @@
+.banner {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+
+}
+.banner .flex-container {
+  position: relative;
+  justify-content: center;
+  width: 100%;
+}
+.banner img {
+  width: 100%;
+}
+.slogan{
+  text-align: center;
+  position: absolute;
+  left: 10%;
+  width: 250px;
+  font-family: "OpenSansLight";
+  color: rgb(255, 255, 255);
+  font-size: 2.2em;
+
+}
+@media (max-width: 500px) {
+  .slogan{
+    font-size: 1.3em;
+    left: auto;
+  }
+}
+@media (max-width: 750px) {
+  .slogan{
+    font-size: 1.5em;
+  }
+}
+.slogan b{
+  font-family: "OpenSans";
+}
+.slogan .button{
+  display: inline-block;
+  margin-top: 25px;
+  width: 225px;
+  border: 1px solid white;
+  font-size: 0.7em;
+  font-weight: bold;
+  cursor: pointer;
+}
+@media (max-width: 500px) {
+  .slogan .button{
+    margin-top: 10px;
+    width: 120px;
+  }
+}
+@media (max-width: 750px) {
+  .slogan .button{
+    margin-top: 10px;
+    width: 120px;
+  }
+}
+.slogan .button:hover{
+  background-color: rgba(255,255,255,0.3);
+  text-shadow: 1px 1px 2px black;
+}
+.switches {
+  position: absolute;
+  bottom: 2%;
+}
+@media (max-width: 500px) {
+  .switches{
+    display: none;
+  }
+}
+.switches input[type=button]{
+  padding: 0;
+  height: 17px;
+  width:17px;
+  cursor: pointer;
+  border: none;
+}
+.switches input[type=button]:focus{
+  outline: none;
+}
+.switches .on{
+  background: url("../images/banner-switch-on.png");
+}
+.switches .off{
+  background: url("../images/banner-switch-off.png");
+}

@@ -1,0 +1,120 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sign-up-bar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(51, 51, 51);
+  min-height: 60px;
+}
+
+.sign-up-bar .flex-container{
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+@media (max-width: 1020px) {
+  .sign-up-bar .flex-container{
+    justify-content: center;
+  }
+}
+.sign-up-bar h2 {
+  font-weight: normal;
+  color: rgb(255, 255, 255);
+}
+.bar-item {
+  min-width: 320px;
+  width: 30%;
+  margin: 10px 0px;
+}
+@media (max-width: 420px) {
+  .bar-item {
+    min-width: 0px;
+    width: auto;
+  }
+}
+
+.links img {
+  margin: 0px 20px;
+}
+footer .links{
+  min-width: 265px;
+}
+
+.sign-up-form input[type=text] {
+  font-family: "Trebuchet MS";
+  width: 170px;
+  height: 30px;
+  padding: 0;
+  padding-left: 10px;
+  border: none;
+  outline: none;
+}
+.sign-up-form input[type=submit] {
+  font-family: "Trebuchet MS";
+  font-size: 1.2em;
+  position: relative;
+  left: -5px;
+  top: 2px;
+  padding: 0 10px;
+  border: none;
+  height: 30px;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 130, 0);
+}
+
+.sign-up-form input[type=submit]:hover{
+  text-shadow: 1px 1px 2px black;
+}
+footer .info {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+
+}
+footer .info .flex-container{
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+@media (max-width: 420px) {
+  footer .info .flex-container{
+    justify-content: center;
+  }
+}
+.info-item {
+  width: 22%;
+  min-width: 200px;
+  margin: 20px 0px;
+  line-height: 1.5em;
+}
+@media (max-width: 1100px) {
+  .info-item{
+    width: 40%;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+footer .info .logo img{
+  display: block;
+  margin-bottom: 10px;
+}
+footer .info .logo {
+  font-size: 0.8em;
+  color: rgb(60, 60, 60);
+  line-height: 1.805;
+  text-align: justify;
+}
+footer .info h2 {
+  margin-bottom: 20px;
+}
+footer .info ul{
+  padding: 0;
+}
+footer .info li{
+  list-style: none;
+}

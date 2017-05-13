@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+}
+@font-face {
+  font-family: "Trebuchet MS";
+  src: url("../fonts/Trebuchet MS.ttf");
+}
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans.ttf");
+}
+@font-face {
+  font-family: "OpenSansLight";
+  src: url("../fonts/OpenSansLight.ttf");
+}
+body {
+  font-family: "Trebuchet MS", sans-serif;
+}
+.flex-container {
+  display: flex;
+  align-items: center;
+  max-width: 1600px;
+  width: 100%;
+  padding: 0px 10px;
+}

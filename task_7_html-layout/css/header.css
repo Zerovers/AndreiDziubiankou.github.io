@@ -1,0 +1,151 @@
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.head{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  background: rgb(226, 226, 226);
+}
+.head .flex-container {
+  min-height: 50px;
+  height: 50px;
+  justify-content: space-between;
+}
+
+.reviews {
+  font-size: 0.8em;
+}
+.reviews .likes{
+  padding: 0px 5px;
+}
+.registration a{
+  color: rgb(51, 51, 51);
+  text-decoration: none;
+  margin: 0px 10px;
+}
+.registration a:hover{
+  color: rgb(220, 80, 71);
+}
+
+header .flex-container {
+  min-height: 200px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+@media (max-width: 420px) {
+  header .flex-container {
+    justify-content: center;
+  }
+}
+header .info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+@media (max-width: 420px) {
+  header .info {
+    justify-content: center;
+  }
+}
+@media (max-width: 800px) {
+  header .info {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+header .info .logo{
+  margin-right: 20px;
+}
+.phonenumber {
+  color: rgb(220, 80, 71);
+}
+@media (max-width: 420px) {
+  header .info .logo{
+    margin-right: 0px;;
+  }
+  header .info h3 {
+    display: inline;
+  }
+}
+.cart-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: baseline;
+  height: 102px;
+  margin: 20px;
+}
+.cart-bar .cart{
+  background-color: rgb(51, 51, 51);
+  font-size: 1.2;
+  color: rgb(255, 255, 255);
+  width: 226px;
+  text-align: center;
+  padding: 7px 0px;
+}
+.cart-bar .searchbar {
+    position: relative;
+    width: 220px;
+    border: 1px solid;
+    padding: 2px;
+}
+.cart-bar .searchbar input[type=text] {
+  width: 170px;
+  height: 25px;
+  padding: 0px;
+  margin-left: 15px;
+  border: 0;
+  outline:none;
+  font-family: "Trebuchet MS";
+}
+.cart-bar .searchbar input[type=submit] {
+  position: absolute;
+  right: 0;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+  border: none;
+  cursor: pointer;
+  background: url("../images/search-icon.png") center no-repeat;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(51, 51, 51);
+}
+
+.navbar .flex-container{
+  min-height: 50px;
+}
+.navbar ul{
+  color: rgb(255, 255, 255);
+  font-size: 1.4em;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+@media (max-width: 420px) {
+  .navbar ul {
+    justify-content: center;
+  }
+}
+.navbar li{
+  margin: 10px 0px;
+  display: inline-block;
+  margin-right: 25px;
+  cursor: pointer;
+}
+.navbar li:hover{
+  color: rgb(203, 203, 205);
+}
